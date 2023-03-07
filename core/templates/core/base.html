@@ -6,9 +6,8 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
   </head>
+  
   <body>
     <nav>
         <div class="navbar-brand">
@@ -29,13 +28,15 @@
   
     {% block content %}
     {% endblock %}
-
-    
   </body>
+
   <footer>
     <div class="container">
           <p class="text-center">&copy; 2023 HostelView. All rights reserved.</p>
     </div>
   </footer>
+  
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
   
 </html>
