@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
-  
   <body>
     <nav>
         <div class="navbar-brand">
-          <a href="{% url 'core:home' %}">HostelView</a>
-        </div>                    
+          <a href="{% url 'core:home' %}">HostelView</a>  
+        </div>
+        <div class="container">
+          {% if user.is_authenticated %}
+          Welcome {{user.username}}
+          {% endif %}
+        </div>           
         <div class="navbar-search mx-auto">
           <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
