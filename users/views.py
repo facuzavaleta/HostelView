@@ -7,8 +7,8 @@ def client_login(request):
 def client_register(request):
     return render(request, 'users/client_register.html')
 
-def acommodation_login(request):
-    return render(request, 'users/acommodation_login.html')
+def admin_login(request):
+    return render(request, 'users/admin_login.html')
 
-def acommodation_register(request):
-    return render(request, 'users/acommodation_register.html')
+def admin_register(request):
+    return render(request, 'users/admin_register.html')
