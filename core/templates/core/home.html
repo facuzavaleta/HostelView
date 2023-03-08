@@ -8,12 +8,12 @@
     <title>HostelView - Home</title>
 </head>
 <body>
-    <h1>Welcome to HostelView{% if user.is_authenticated %}, {{user.username}}<a href="{% url 'core:logout' %}">Logout</a>{% endif %}
+    <h1>Welcome to HostelView{% if user.is_authenticated %}, {{user.username}}<a href="{% url 'core:logout' %}">Logout</a>{% endif %}</h1>
     <h2>Find your ideal hostel with ease - HostelView makes it simple and hassle-free!</h2>
     <hr>
     <ul>
         <h2>Login:</h2>
-        <a href="{% url 'users:client_login' %}" class="btn">Client Login</a> <a href="{% url 'users:admin_login' %}" class="btn">Admin Login</a></li>
+        <a href="users/auth/login/" class="btn">Client Login</a> <a href="users/auth/login/" class="btn">Admin Login</a></li>
         <h2>Are you new?</h2>
         <a href="{% url 'users:register' %}" class="btn">Register</a></li>
         <br><br>

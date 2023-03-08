@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
+from users.models import User
+from django.contrib.auth.decorators import login_required
 
 def home_view(request):
     return render(request, 'core/home.html')
@@ -13,3 +15,14 @@ def about_view(request):
 def logout_view(request):
     logout(request)
     return redirect('core:home')
+
+@login_required
+def landpageredirect_view(request):
+    id = request.user.id
+    user = User.objects.get(id=id)
+    if user.user_type == 'Client':
+        return render(request, 'users/clientlandpage.html')
+        # return render(request, 'users/clientlandpage.html')
+    elif user.user_type == 'Admin':
+        return render(request, 'users/adminlandpage.html')
+        # return render(request, 'users/adminlandpage.html')

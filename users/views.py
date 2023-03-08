@@ -2,13 +2,9 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse
-
+from django.contrib.auth import authenticate, login
+from .models import User
 # Create your views here.
-def client_login(request):
-    return render(request, 'users/client_login.html')
-
-def admin_login(request):
-    return render(request, 'users/admin_login.html')
 
 def register(request):
     if request.method == "GET":
@@ -21,6 +17,6 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect(reverse("core:home"))
+            return redirect(reverse("core:landpageredirect_view"))
         else:
             return render(request, "users/register_fail.html", {})
