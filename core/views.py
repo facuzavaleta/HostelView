@@ -20,9 +20,7 @@ def logout_view(request):
 def landpageredirect_view(request):
     id = request.user.id
     user = User.objects.get(id=id)
-    if user.user_type == 'Client':
-        return render(request, 'users/clientlandpage.html')
-        # return render(request, 'users/clientlandpage.html')
-    elif user.user_type == 'Admin':
-        return render(request, 'users/adminlandpage.html')
-        # return render(request, 'users/adminlandpage.html')
+    if request.user.user_type == 'Client':
+        return redirect('/users/client/')
+    elif request.user.user_type == 'Admin':
+        return redirect('/users/admin/')
