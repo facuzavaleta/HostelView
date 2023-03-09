@@ -12,7 +12,7 @@ class Accommodation(models.Model):
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='accommodations/')
-    roooms = models.IntegerField(default=0)
+    rooms_number = models.IntegerField(default=0)
     score = models.IntegerField(default=0)
 
 class Room(models.Model):
