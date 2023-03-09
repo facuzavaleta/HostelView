@@ -12,6 +12,12 @@
     <hr>
     <h2>Welcome {{ user.first_name }}</h2>
     <h3>Wich should be your next step...?</h3>
+    <h3>Accommodatios around...</h3>
+    {% for accommodation in accommodations_all %}
+    <li>{{ accommodation }}</li>
+    {% empty %}
+    <p>No accommodations around.</p>
+    {% endfor %}
 </body>
 </html>
 {% endblock %}

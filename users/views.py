@@ -26,11 +26,12 @@ def register(request):
         
 @login_required
 def home_view(request, user_type, username):
-    accommodations = Accommodation.objects.filter(user__id=request.user.id)
-
+    accommodations_admin = Accommodation.objects.filter(user__id=request.user.id)
+    accommodations_all = Accommodation.objects.all()
     context = {
         'username': username,
-        'accommodations': accommodations
+        'accommodations_admin': accommodations_admin,
+        'accommodations_all': accommodations_all
     }
     
     if user_type == 'client':

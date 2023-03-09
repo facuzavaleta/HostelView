@@ -13,7 +13,7 @@
     <h2>Welcome {{ user.username }}</h2>
     <h3>Manage your accommodations from here.</h3>
     <ul>
-    {% for accommodation in accommodations %}
+    {% for accommodation in accommodations_admin %}
     <li>{{ accommodation }}</li>
     {% empty %}
     <h3>No accommodations created.</h3>
