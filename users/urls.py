@@ -6,5 +6,5 @@ app_name="users"
 urlpatterns = [
     path("auth/", include("django.contrib.auth.urls")),
     path('register/', register, name='register'),
-    path('<str:user_type>/', home_view, name='home')
+    path('<str:user_type>/<str:username>/', home_view, name='home'),
 ]

@@ -23,8 +23,8 @@ def register(request):
             return render(request, "users/register_fail.html", {})
         
 @login_required
-def home_view(request, user_type):
+def home_view(request, user_type, username):
     if user_type == 'client':
-        return render(request, 'users/client/clientlandpage.html')
+        return render(request, 'users/client/clientlandpage.html', {'username': username})
     elif user_type == 'admin':
-        return render(request, 'users/admin/adminlandpage.html')
+        return render(request, 'users/admin/adminlandpage.html', {'username': username})

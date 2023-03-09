@@ -18,9 +18,8 @@ def logout_view(request):
 
 @login_required
 def landpageredirect_view(request):
-    id = request.user.id
-    user = User.objects.get(id=id)
+    username = request.user.username
     if request.user.user_type == 'Client':
-        return redirect('/users/client/')
+        return redirect(f'/users/client/{username}')
     elif request.user.user_type == 'Admin':
-        return redirect('/users/admin/')
+        return redirect(f'/users/admin/{username}')
