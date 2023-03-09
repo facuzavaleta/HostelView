@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from .models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseNotFound
+from acommodations.models import Accommodation
 # Create your views here.
 
 def register(request):
@@ -24,7 +26,16 @@ def register(request):
         
 @login_required
 def home_view(request, user_type, username):
+    accommodations = Accommodation.objects.filter(user__id=request.user.id)
+
+    context = {
+        'username': username,
+        'accommodations': accommodations
+    }
+    
     if user_type == 'client':
-        return render(request, 'users/client/clientlandpage.html', {'username': username})
+        return render(request, 'users/client/clientlandpage.html', context)
     elif user_type == 'admin':
-        return render(request, 'users/admin/adminlandpage.html', {'username': username})
+        return render(request, 'users/admin/adminlandpage.html', context)
+    else:
+        return HttpResponseNotFound()

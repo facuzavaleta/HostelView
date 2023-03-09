@@ -12,6 +12,14 @@
     <hr>
     <h2>Welcome {{ user.username }}</h2>
     <h3>Manage your accommodations from here.</h3>
+    <ul>
+    {% for accommodation in accommodations %}
+    <li>{{ accommodation }}</li>
+    {% empty %}
+    <h3>No accommodations created.</h3>
+    {% endfor %}
+    <br>
+    <a href="accommodations/create/" class="btn">Create</a>
 </body>
 </html>
 {% endblock %}

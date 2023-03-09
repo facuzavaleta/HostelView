@@ -15,6 +15,9 @@ class Accommodation(models.Model):
     rooms_number = models.IntegerField(default=0)
     score = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
 class Room(models.Model):
     accommodation = models.ForeignKey(Accommodation, on_delete=models.CASCADE, related_name='rooms')
     room_type = models.CharField(max_length=255, choices=ROOM_TYPE_CHOICES)

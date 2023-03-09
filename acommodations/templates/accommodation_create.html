@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Accommodations - Accommodations Create</title>
+</head>
+<body>
+    <h1>Accommodation Create</h1>
+    <form action = "" method = "post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input type="submit" value=Submit class="btn btn-primary">
+    </form>
+</body>
+</html>
+{% endblock %}
