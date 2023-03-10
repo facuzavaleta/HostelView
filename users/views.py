@@ -2,12 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
 from .models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseNotFound
 from acommodations.models import Accommodation
-from django.contrib.auth.decorators import user_passes_test
 
 def is_client(user):
     return user.is_authenticated and user.user_type == 'Client'
@@ -41,7 +39,7 @@ def client_landpage_view(request, username):
     }
     
     return render(request, 'users/client/clientlandpage.html', context)
-    
+
 @user_passes_test(is_admin)
 def admin_landpage_view(request, username):
     accommodations_admin = Accommodation.objects.filter(user__id=request.user.id)
@@ -52,4 +50,3 @@ def admin_landpage_view(request, username):
     }
     
     return render(request, 'users/admin/adminlandpage.html', context)
-

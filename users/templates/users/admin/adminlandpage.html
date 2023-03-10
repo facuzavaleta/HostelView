@@ -14,7 +14,8 @@
     <h3>Manage your accommodations from here.</h3>
     <ul>
     {% for accommodation in accommodations_admin %}
-    <li>{{ accommodation }}</li>
+    <li><a href="{{ accommodation }}/" class="btn">{{ accommodation }} - {{ accommodation.score }} &#x2B50;</a></li>
+    <br>
     {% empty %}
     <h3>No accommodations created.</h3>
     {% endfor %}
