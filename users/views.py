@@ -7,6 +7,13 @@ from .models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotFound
 from acommodations.models import Accommodation
+from django.contrib.auth.decorators import user_passes_test
+
+def is_client(user):
+    return user.is_authenticated and user.user_type == 'Client'
+
+def is_admin(user):
+    return user.is_authenticated and user.user_type == 'Admin'
 # Create your views here.
 
 def register(request):
@@ -24,19 +31,25 @@ def register(request):
         else:
             return render(request, "users/register_fail.html", {})
         
-@login_required
-def home_view(request, user_type, username):
-    accommodations_admin = Accommodation.objects.filter(user__id=request.user.id)
+@user_passes_test(is_client)
+def client_landpage_view(request, username):
+
     accommodations_all = Accommodation.objects.all()
     context = {
         'username': username,
-        'accommodations_admin': accommodations_admin,
         'accommodations_all': accommodations_all,
     }
     
-    if user_type == 'client':
-        return render(request, 'users/client/clientlandpage.html', context)
-    elif user_type == 'admin':
-        return render(request, 'users/admin/adminlandpage.html', context)
-    else:
-        return HttpResponseNotFound()
+    return render(request, 'users/client/clientlandpage.html', context)
+    
+@user_passes_test(is_admin)
+def admin_landpage_view(request, username):
+    accommodations_admin = Accommodation.objects.filter(user__id=request.user.id)
+
+    context = {
+        'username': username,
+        'accommodations_admin': accommodations_admin,
+    }
+    
+    return render(request, 'users/admin/adminlandpage.html', context)
+
