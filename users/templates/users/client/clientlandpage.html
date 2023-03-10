@@ -10,11 +10,11 @@
 <body>
     <h1>Client</h1>
     <hr>
-    <h2>Welcome {{ user.first_name }}</h2>
-    <h3>Wich should be your next step...?</h3>
-    <h3>Accommodatios around...</h3>
+    <h2>Welcome {{ user.first_name }} - <a href="{% url 'core:logout' %}">Logout</a></h2>
+    <h3>Accommodations around:</h3>
     {% for accommodation in accommodations_all %}
-    <li>{{ accommodation }}</li>
+    <li><a href="{{ accommodation }}/" class="btn">{{ accommodation }} - {{ accommodation.score }} &#x2B50;</a></li>
+    <br>
     {% empty %}
     <p>No accommodations around.</p>
     {% endfor %}

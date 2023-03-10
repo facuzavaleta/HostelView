@@ -31,7 +31,7 @@ def home_view(request, user_type, username):
     context = {
         'username': username,
         'accommodations_admin': accommodations_admin,
-        'accommodations_all': accommodations_all
+        'accommodations_all': accommodations_all,
     }
     
     if user_type == 'client':
