@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import AccommodationForm
 from django.urls import reverse
+from .models import Accommodation
 
 # Create your views here.
 def accommodation_create(request, user_type, username):
@@ -21,3 +22,11 @@ def accommodation_create(request, user_type, username):
     }
     
     return render(request, 'accommodation_create.html', context)
+
+def accommodations_listall(request, username):
+    accommodations = Accommodation.objects.all()
+    context = {
+        'username': username,
+        'accommodations': accommodations,
+    }
+    return render(request, 'accommodations_listall.html', context)
